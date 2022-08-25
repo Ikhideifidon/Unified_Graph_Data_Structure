@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Main {
-    public static void main(String[] args) {
+public class Graphs {
+    @SuppressWarnings("jol")
+    private static class UndirectedGraph {
         final List<Graph.Vertex<Integer>> vertices = new ArrayList<>();
         final Graph.Vertex<Integer> v1 = new Graph.Vertex<>(1);
         final Graph.Vertex<Integer> v2 = new Graph.Vertex<>(2);
@@ -53,6 +54,6 @@ public class Main {
         }
 
         final Graph<Integer> graph = new Graph<>(vertices, edges);
-        System.out.println(graph);
     }
+
 }

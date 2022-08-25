@@ -2,7 +2,7 @@ package com.github.graph.ikhideifidon;
 
 import java.util.*;
 
-public class Graph<T extends Object & Comparable<T>> {
+public class Graph<T extends Object & Comparable<T>> implements Comparable<Graph<T>> {
 
     private final List<Vertex<T>> allVertices = new LinkedList<>();
     private final List<Edge<T>> allEdges = new LinkedList<>();
@@ -60,9 +60,83 @@ public class Graph<T extends Object & Comparable<T>> {
     // Setters and Getters
     public TYPE getType() { return type; }
 
-    public List<Vertex<T>> getVertices() { return allVertices; }
+    public List<Vertex<T>> getAllVertices() { return allVertices; }
 
-    public List<Edge<T>> getEdges() { return allEdges; }
+    public List<Edge<T>> getAllEdges() { return allEdges; }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean equals(Object o) {
+        // This graph comparison is based on:
+        // 1. type
+        // 2. size of allVertices
+        // 3. size of allEdges
+        // 4. each vertex
+        // 5. each edge
+
+        if (!(o instanceof Graph<?> that))
+            return false;
+
+        final boolean equalType = this.type == that.type;
+        if (!equalType)
+            return false;
+
+        final boolean equalSizeAllVertices = this.getAllVertices().size() == that.getAllVertices().size();
+        if (!equalSizeAllVertices)
+            return false;
+
+        final boolean equalSizeAllEdges = this.getAllEdges().size() == that.getAllEdges().size();
+        if (!equalSizeAllEdges)
+            return false;
+
+        // Vertex Comparison
+        final Object[] thisVertices = this.getAllVertices().toArray();
+        final Object[] thatVertices = that.getAllVertices().toArray();
+        Arrays.sort(thisVertices);
+        Arrays.sort(thatVertices);
+
+        for (int i = 0; i < thisVertices.length; i++) {
+            final Vertex<T> thisVertex = (Vertex<T>) thisVertices[i];
+            final Vertex<T> thatVertex = (Vertex<T>) thatVertices[i];
+            // Each Vertex comparison
+            if (!thisVertex.equals(thatVertex))
+                return false;
+        }
+
+        // Edge Comparison
+        final Object[] thisEdges = this.getAllEdges().toArray();
+        final Object[] thatEdges = that.getAllEdges().toArray();
+        Arrays.sort(thisEdges);
+        Arrays.sort(thatEdges);
+
+        for (int i = 0; i < thisEdges.length; i++) {
+            final Edge<T> thisEdge = (Edge<T>) thisEdges[i];
+            final Edge<T> thatEdge = (Edge<T>) thatEdges[i];
+            // Each Edge comparison
+            if (!thisEdge.equals(thatEdge))
+                return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = this.type.hashCode();
+        result = 31 * result + Integer.hashCode(this.getAllVertices().size());
+        result = 31 * result + Integer.hashCode(this.getAllEdges().size());
+
+        for (Vertex<T> vertex : getAllVertices())
+            result = 31 * result + vertex.hashCode();
+
+        for (Edge<T> edge : getAllEdges())
+            result = 31 * result + edge.hashCode();
+        return result;
+    }
+
+    @Override
+    public int compareTo(Graph<T> that) {
+        return 0;
+    }
 
     @Override
     public String toString() {
