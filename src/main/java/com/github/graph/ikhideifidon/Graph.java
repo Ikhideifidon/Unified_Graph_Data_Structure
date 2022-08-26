@@ -77,7 +77,7 @@ public class Graph<T extends Object & Comparable<T>> implements Comparable<Graph
         if (!(o instanceof Graph<?> that))
             return false;
 
-        final boolean equalType = this.type == that.type;
+        final boolean equalType = this.getType() == that.getType();
         if (!equalType)
             return false;
 
