@@ -2,7 +2,7 @@ package com.github.graph.ikhideifidon;
 
 import java.util.*;
 
-public class Graph<T extends Object & Comparable<T>> implements Comparable<Graph<T>> {
+public class Graph<T extends Object & Comparable<T>> {
 
     private final List<Vertex<T>> allVertices = new LinkedList<>();
     private final List<Edge<T>> allEdges = new LinkedList<>();
@@ -173,9 +173,6 @@ public class Graph<T extends Object & Comparable<T>> implements Comparable<Graph
         return result;
     }
 
-    @Override
-    public int compareTo(Graph<T> that) {
-        return 0;
     }
 
     @Override
