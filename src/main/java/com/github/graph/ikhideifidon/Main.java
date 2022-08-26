@@ -62,5 +62,6 @@ public class Main {
         System.out.println(graph.neighbors(v4));
         System.out.println(Arrays.toString(BreadthFirstTraversal.breadthFirstSearch(graph, v1)));
         System.out.println(graph.numberOfSelfLoop());
+        System.out.println(Arrays.toString(DepthFirstTraversal.depthFirstSearchRecursively(graph, v4)));
     }
 }
