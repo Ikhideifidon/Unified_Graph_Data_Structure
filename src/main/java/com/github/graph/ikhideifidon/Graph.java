@@ -173,8 +173,6 @@ public class Graph<T extends Object & Comparable<T>> {
         return result;
     }
 
-    }
-
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
