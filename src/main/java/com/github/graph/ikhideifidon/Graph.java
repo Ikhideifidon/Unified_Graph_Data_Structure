@@ -64,6 +64,46 @@ public class Graph<T extends Object & Comparable<T>> implements Comparable<Graph
 
     public List<Edge<T>> getAllEdges() { return allEdges; }
 
+    public List<Edge<T>> neighbors(Vertex<T> vertex) {
+        if (vertex != null && getAllVertices().contains(vertex)) {
+            for (Vertex<T> v : getAllVertices()) {
+                if (v.equals(vertex))
+                   return v.getEdges();
+            }
+        }
+        return null;
+    }
+
+    public int degree(Vertex<T> vertex) {
+        int degree = 0;
+        if (vertex != null && getAllVertices().contains(vertex)) {
+            for (Vertex<T> v : getAllVertices()) {
+                if (v.equals(vertex))
+                    return v.getEdges().size();
+            }
+        }
+        return degree;
+    }
+
+    public int maximumDegree() {
+        int maximumDegree = 0;
+        for (Vertex<T> vertex : getAllVertices()) {
+            if (vertex.getEdges().size() > maximumDegree)
+                maximumDegree = vertex.getEdges().size();
+
+        }
+        return maximumDegree;
+    }
+
+    public int numberOfSelfLoop() {
+        int numberOfSelfLoop = 0;
+        for (Edge<T> edge : getAllEdges()) {
+            if (edge.getTo().compareTo(edge.getFrom()) == 0)
+                numberOfSelfLoop++;
+        }
+        return numberOfSelfLoop / 2;                    // Each edge is counted twice.
+    }
+
     @SuppressWarnings("unchecked")
     @Override
     public boolean equals(Object o) {
@@ -208,6 +248,7 @@ public class Graph<T extends Object & Comparable<T>> implements Comparable<Graph
             }
             return false;
         }
+
 
         @Override
         @SuppressWarnings("rawtypes")

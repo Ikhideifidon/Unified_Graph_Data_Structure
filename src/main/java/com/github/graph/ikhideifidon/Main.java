@@ -2,7 +2,6 @@ package com.github.graph.ikhideifidon;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Deque;
 import java.util.List;
 
 public class Main {
@@ -60,5 +59,8 @@ public class Main {
         final Graph<Integer> graph = new Graph<>(vertices, edges);
         System.out.println(graph);
         System.out.println(Arrays.toString(DepthFirstTraversal.depthFirstSearch(graph, v1)));
+        System.out.println(graph.neighbors(v4));
+        System.out.println(Arrays.toString(BreadthFirstTraversal.breadthFirstSearch(graph, v1)));
+        System.out.println(graph.numberOfSelfLoop());
     }
 }

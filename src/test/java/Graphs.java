@@ -8,7 +8,6 @@ public class Graphs {
     @SuppressWarnings("jol")
     private static class UndirectedGraph {
         final List<Graph.Vertex<Integer>> vertices = new ArrayList<>();
-        final List<Integer> list = new ArrayList<>();
         final Graph.Vertex<Integer> v1 = new Graph.Vertex<>(1);
         final Graph.Vertex<Integer> v2 = new Graph.Vertex<>(2);
         final Graph.Vertex<Integer> v3 = new Graph.Vertex<>(3);
