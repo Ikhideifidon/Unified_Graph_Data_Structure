@@ -2,7 +2,7 @@ package com.github.graph.ikhideifidon;
 
 import java.util.*;
 
-public class Graph<T extends Object & Comparable<T>> implements Comparable<Graph<T>> {
+public class Graph<T extends Object & Comparable<T>> {
 
     private final List<Vertex<T>> allVertices = new LinkedList<>();
     private final List<Edge<T>> allEdges = new LinkedList<>();
@@ -104,6 +104,25 @@ public class Graph<T extends Object & Comparable<T>> implements Comparable<Graph
         return numberOfSelfLoop / 2;                    // Each edge is counted twice.
     }
 
+    /** Given two valid vertices, check if there exists an edge between them.
+     * Time Complexity: O(|E|).
+     * Space Complexity: O(|E|).
+     **/
+    public boolean edgeExists(Vertex<T> sourceVertex, Vertex<T> destinationVertex) {
+        if (sourceVertex == null || destinationVertex == null)
+            throw new NullPointerException("End vertices cannot be null");
+
+        for (Edge<T> edge : getAllEdges()) {
+            Vertex<T> startVertex = edge.getFrom();
+            Vertex<T> endVertex = edge.getTo();
+
+            if (startVertex.equals(sourceVertex) && endVertex.equals(destinationVertex))
+                return true;
+
+        }
+        return false;
+    }
+
     @SuppressWarnings("unchecked")
     @Override
     public boolean equals(Object o) {
@@ -171,11 +190,6 @@ public class Graph<T extends Object & Comparable<T>> implements Comparable<Graph
         for (Edge<T> edge : getAllEdges())
             result = 31 * result + edge.hashCode();
         return result;
-    }
-
-    @Override
-    public int compareTo(Graph<T> that) {
-        return 0;
     }
 
     @Override
@@ -385,7 +399,7 @@ public class Graph<T extends Object & Comparable<T>> implements Comparable<Graph
             if (cost != 0)
                 return cost;
 
-            // if cost are equal, compare 'from' vertex
+            // if costs are equal, compare 'from' vertex
             final int from = this.getFrom().compareTo(edge.getFrom());
             if (from != 0)
                 return from;

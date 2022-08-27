@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a32cab9e-9619-471a-bd22-8294924d7fc8" name="Changes" comment="Unified Graph Data Structure">
+      <change afterPath="$PROJECT_DIR$/output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/graph/ikhideifidon/DepthFirstPaths.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/github/graph/ikhideifidon/DepthFirstTraversal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/graph/ikhideifidon/DepthFirstTraversal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/graph/ikhideifidon/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/graph/ikhideifidon/Graph.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/github/graph/ikhideifidon/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/graph/ikhideifidon/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -113,7 +116,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661530428784</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Unified Graph Data Structure">
+      <created>1661534044468</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1661534044468</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

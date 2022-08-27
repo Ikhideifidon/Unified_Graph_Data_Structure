@@ -1,11 +1,14 @@
 package com.github.graph.ikhideifidon;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         final List<Graph.Vertex<Integer>> vertices = new ArrayList<>();
         final Graph.Vertex<Integer> v1 = new Graph.Vertex<>(1);
         final Graph.Vertex<Integer> v2 = new Graph.Vertex<>(2);
@@ -16,6 +19,7 @@ public class Main {
         final Graph.Vertex<Integer> v7 = new Graph.Vertex<>(7);
         final Graph.Vertex<Integer> v8 = new Graph.Vertex<>(8);
         final Graph.Vertex<Integer> v9 = new Graph.Vertex<>(9);
+//        final Graph.Vertex<Integer> v10 = new Graph.Vertex<>(10);
         {
             vertices.add(v1);
             vertices.add(v2);
@@ -26,6 +30,7 @@ public class Main {
             vertices.add(v7);
             vertices.add(v8);
             vertices.add(v9);
+//            vertices.add(v10);
         }
 
         final List<Graph.Edge<Integer>> edges = new ArrayList<>();
@@ -57,11 +62,31 @@ public class Main {
         }
 
         final Graph<Integer> graph = new Graph<>(vertices, edges);
+
+        PrintStream out = new PrintStream(new FileOutputStream("output.txt"));
+        System.setOut(out);
+
         System.out.println(graph);
         System.out.println(Arrays.toString(DepthFirstTraversal.depthFirstSearch(graph, v1)));
         System.out.println(graph.neighbors(v4));
         System.out.println(Arrays.toString(BreadthFirstTraversal.breadthFirstSearch(graph, v1)));
         System.out.println(graph.numberOfSelfLoop());
-        System.out.println(Arrays.toString(DepthFirstTraversal.depthFirstSearchRecursively(graph, v4)));
+        System.out.println(DepthFirstTraversal.depthFirstSearchRecursively(graph, v1));
+        System.out.println(graph.maximumDegree());
+        System.out.println(graph.degree(v2));
+        System.out.println(e1_7.compareTo(e1_8));
+        System.out.println(e1_7.equals(e1_8));
+        System.out.println(e1_7.hashCode());
+        System.out.println(e1_8.hashCode());
+        v1.setWeight(3);
+        System.out.println(graph);
+
+        DepthFirstPaths<Integer> searchPaths = new DepthFirstPaths<>(graph, v1);
+        System.out.println(searchPaths.hasPathTo(v5));
+        System.out.println(searchPaths.pathTo(v9));
+
+        System.out.println(v1.pathTo(v3));
+        System.out.println(graph.getAllEdges());
+        System.out.println(graph.edgeExists(v6, v1));
     }
 }
